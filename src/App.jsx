@@ -20,6 +20,11 @@ function App() {
 
   const [currentTheme, setCurrentTheme] = useState("light");
   const [currentTab, setCurrentTab] = React.useState(0);
+  const [apiKey, setApiKey] = useState("");
+
+  const handleApiChange = (event) => {
+    setApiKey(event.target.value);
+  };
 
   const handleTabChange = (event, newValue) => {
     setCurrentTab(newValue);
@@ -42,7 +47,7 @@ function App() {
               handleThemeChange={handleThemeChange}
               handleTabChange={handleTabChange}
             >
-              <Landing currentTheme={currentTheme} />
+              <Landing currentTheme={currentTheme} apiKey={apiKey} handleApiChange={handleApiChange} />
             </Layout>
           </TabContext>
         </MuiThemeProvider>

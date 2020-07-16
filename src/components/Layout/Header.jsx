@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { AppBar, Toolbar, withStyles, Tabs, Tab } from "@material-ui/core";
 import ThemeSwitch from "components/ThemeSwitch";
+import { Github } from "@styled-icons/feather/Github";
 
 const AppTitle = styled.h3`
   font-weight: 700;
@@ -38,12 +39,24 @@ const StyledTab = withStyles((theme) => ({
     fontWeight: theme.typography.fontWeightRegular,
     fontSize: theme.typography.pxToRem(12),
     marginRight: theme.spacing(1),
-    minWidth: 80,
+    minWidth: 64,
     "&:focus": {
       opacity: 1,
     },
   },
 }))((props) => <Tab disableRipple {...props} />);
+
+const IconWrapper = styled.div`
+  border: 1px solid #fff;
+  color: #fff;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+`;
 
 export default function Header({
   currentTab,
@@ -65,6 +78,17 @@ export default function Header({
             <StyledTab label="MapBox GL" />
             <StyledTab label="@react-google-maps" />
           </StyledTabs>
+          <IconWrapper
+            onClick={() => {
+              const win = window.open(
+                "https://github.com/vamci07/react-maps",
+                "_blank"
+              );
+              win.focus();
+            }}
+          >
+            <Github style={{ height: 16, width: 16 }} />
+          </IconWrapper>
           <ThemeSwitch handleThemeChange={handleThemeChange} />
         </ToolbarControls>
       </Toolbar>

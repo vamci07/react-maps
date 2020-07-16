@@ -13,25 +13,20 @@ const defaultLocation = {
 };
 
 const MapContainer = styled.div`
-  position: absolute;
-  top: 64px;
-  bottom: 0;
-  left: 0;
-  right: 0;
   font-family: Nunito;
-  height: 75%;
-  margin: 12px;
+  width: 100%;
+  height: calc(100vh - 420px);
   border-radius: 8px;
-  border: 2px solid ${(p) => p.theme.palette.divider};
 `;
 
-export default function MapBox({ currentTheme }) {
+export default function MapBox({ currentTheme, apiKey }) {
   const mapContainerRef = useRef(null);
   const style = `mapbox://styles/mapbox/${
     currentTheme === "light" ? "streets-v11" : "dark-v10"
   }`;
 
   useEffect(() => {
+    if (apiKey && apiKey.length) mapboxgl.accessToken = apiKey;
     const map = new mapboxgl.Map({
       container: mapContainerRef.current || "",
       style: style,
@@ -42,7 +37,7 @@ export default function MapBox({ currentTheme }) {
     map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
 
     return () => map.remove();
-  }, [style]);
+  }, [style, apiKey]);
 
   return <MapContainer ref={mapContainerRef} />;
 }

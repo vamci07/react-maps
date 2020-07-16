@@ -3,19 +3,12 @@ import { functions, isEqual, omit } from "lodash";
 import styled from "styled-components";
 
 const MapContainer = styled.div`
-  position: absolute;
-  top: 64px;
-  bottom: 0;
-  left: 0;
-  right: 0;
   font-family: Nunito;
-  height: 75%;
-  margin: 12px;
+  height: calc(100vh - 420px);
   border-radius: 8px;
-  border: 2px solid ${(p) => p.theme.palette.divider};
 `;
 
-function GoogleMap({ options, onMount, className, onMountProps }) {
+function GoogleMap({ apiKey, options, onMount, className, onMountProps }) {
   const ref = useRef();
   const [map, setMap] = useState();
   useEffect(() => {
@@ -23,14 +16,13 @@ function GoogleMap({ options, onMount, className, onMountProps }) {
       setMap(new window.google.maps.Map(ref.current, { ...options }));
     if (!window.google) {
       const script = document.createElement(`script`);
-      script.src =
-        `https://maps.googleapis.com/maps/api/js?key=` +
-        process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+      const key = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || apiKey;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=` + key;
       document.head.append(script);
       script.addEventListener(`load`, onLoad);
       return () => script.removeEventListener(`load`, onLoad);
     } else onLoad();
-  }, [options]);
+  }, [options, apiKey]);
   if (map && typeof onMount === `function`) onMount(map, onMountProps);
   return <MapContainer {...{ ref, className }} />;
 }

@@ -5,16 +5,9 @@ import styled from "styled-components";
 const libraries = ["places"];
 
 const MapContainer = styled.div`
-  position: absolute;
-  top: 64px;
-  bottom: 0;
-  left: 0;
-  right: 0;
   font-family: Nunito;
-  height: 75%;
-  margin: 12px;
+  height: calc(100vh - 420px);
   border-radius: 8px;
-  border: 2px solid ${(p) => p.theme.palette.divider};
 `;
 
 const mapContainerStyle = {
@@ -28,9 +21,10 @@ const center = {
   lng: -81.530425,
 };
 
-export default function ReactGoogleMap() {
+export default function ReactGoogleMap({ apiKey }) {
+  const key = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || apiKey;
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: key,
     libraries,
   });
 
