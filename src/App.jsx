@@ -19,7 +19,7 @@ function App() {
   ]);
 
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [currentTab, setCurrentTab] = React.useState(1);
+  const [currentTab, setCurrentTab] = React.useState(0);
 
   const handleTabChange = (event, newValue) => {
     setCurrentTab(newValue);
