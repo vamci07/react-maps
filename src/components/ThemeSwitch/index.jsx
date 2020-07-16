@@ -3,7 +3,7 @@ import "./style.scss";
 
 export default function ThemeSwitch({ handleThemeChange }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", marginRight: 12 }}>
+    <div style={{ display: "flex", alignItems: "center", margin: '0 12px 0 24px' }}>
       <input
         className="switch-input"
         id="theme-switch"

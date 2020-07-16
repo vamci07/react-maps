@@ -1,14 +1,26 @@
 import React from "react";
-import {
-  GoogleMap,
-  useLoadScript
-} from "@react-google-maps/api";
+import { GoogleMap, useLoadScript } from "@react-google-maps/api";
+import styled from "styled-components";
 
 const libraries = ["places"];
 
+const MapContainer = styled.div`
+  position: absolute;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-family: Nunito;
+  height: 75%;
+  margin: 12px;
+  border-radius: 8px;
+  border: 2px solid #fff;
+`;
+
 const mapContainerStyle = {
-  width: "100vw",
-  height: "100vh",
+  width: "inherit",
+  height: "100%",
+  borderRadius: 8,
 };
 
 const center = {
@@ -26,10 +38,12 @@ export default function Map() {
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
-    <GoogleMap
-      mapContainerStyle={mapContainerStyle}
-      zoom={15}
-      center={center}
-    ></GoogleMap>
+    <MapContainer>
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        zoom={15}
+        center={center}
+      ></GoogleMap>
+    </MapContainer>
   );
 }

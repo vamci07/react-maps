@@ -8,6 +8,7 @@ import {
   CssBaseline,
   useMediaQuery,
 } from "@material-ui/core";
+import TabContext from "@material-ui/lab/TabContext";
 import Layout from "./components/Layout";
 import Landing from "./pages/Landing";
 
@@ -18,15 +19,15 @@ function App() {
   ]);
 
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [currentMap, setCurrentMap] = useState("google");
+  const [currentTab, setCurrentTab] = React.useState(1);
+
+  const handleTabChange = (event, newValue) => {
+    setCurrentTab(newValue);
+  };
 
   const handleThemeChange = () => {
     if (currentTheme === "light") setCurrentTheme("dark");
     else setCurrentTheme("light");
-  };
-
-  const handleMapsRendererChange = () => {
-    setCurrentMap(currentMap === "google" ? "mapbox" : "google");
   };
 
   theme = React.useMemo(() => myTheme(currentTheme), [currentTheme]);
@@ -35,12 +36,15 @@ function App() {
       <StylesProvider injectFirst>
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
-          <Layout
-            handleThemeChange={handleThemeChange}
-            handleMapsRendererChange={handleMapsRendererChange}
-          >
-            <Landing currentTheme={currentTheme} currentMap={currentMap} />
-          </Layout>
+          <TabContext value={currentTab}>
+            <Layout
+              currentTab={currentTab}
+              handleThemeChange={handleThemeChange}
+              handleTabChange={handleTabChange}
+            >
+              <Landing currentTheme={currentTheme} />
+            </Layout>
+          </TabContext>
         </MuiThemeProvider>
       </StylesProvider>
     </ThemeProvider>

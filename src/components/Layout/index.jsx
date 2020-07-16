@@ -11,15 +11,17 @@ const Container = styled.div`
 `;
 
 export default function Layout({
+  currentTab,
   children,
   handleThemeChange,
-  handleMapsRendererChange,
+  handleTabChange,
 }) {
   return (
     <Container>
       <Header
+        currentTab={currentTab}
         handleThemeChange={handleThemeChange}
-        handleMapsRendererChange={handleMapsRendererChange}
+        handleTabChange={handleTabChange}
       />
       <Content>{children}</Content>
     </Container>

@@ -4,11 +4,15 @@ import styled from "styled-components";
 
 const MapContainer = styled.div`
   position: absolute;
-  top: 0;
+  top: 64px;
   bottom: 0;
   left: 0;
   right: 0;
   font-family: Nunito;
+  height: 75%;
+  margin: 12px;
+  border-radius: 8px;
+  border: 2px solid #fff;
 `;
 
 function GoogleMap({ options, onMount, className, onMountProps }) {
