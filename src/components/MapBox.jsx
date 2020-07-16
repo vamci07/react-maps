@@ -22,7 +22,7 @@ const MapContainer = styled.div`
   height: 75%;
   margin: 12px;
   border-radius: 8px;
-  border: 2px solid #fff;
+  border: 2px solid ${(p) => p.theme.palette.divider};
 `;
 
 export default function MapBox({ currentTheme }) {

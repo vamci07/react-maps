@@ -10,7 +10,7 @@ const InfoContainer = styled.div`
   height: 18%;
   margin: 12px;
   border-radius: 8px;
-  border: 2px solid #fff;
+  border: 2px solid ${(p) => p.theme.palette.divider};
 `;
 
 export default function MapInfo({ children }) {

@@ -5,6 +5,7 @@ const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 24px 24px;
 `;
 
 const Title = styled.h1``;
