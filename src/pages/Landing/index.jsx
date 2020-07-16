@@ -1,6 +1,6 @@
 import React from "react";
 import TabPanel from "@material-ui/lab/TabPanel";
-import Map from "components/Map";
+import ReactGoogleMap from "components/ReactGoogleMap";
 import MapBox from "components/MapBox";
 import GoogleMap from "components/GoogleMap";
 
@@ -14,7 +14,7 @@ export default function Landing({ currentTheme }) {
         <MapBox currentTheme={currentTheme} />
       </TabPanel>
       <TabPanel value={2}>
-        <Map />
+        <ReactGoogleMap />
       </TabPanel>
     </div>
   );
