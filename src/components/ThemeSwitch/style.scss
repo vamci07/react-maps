@@ -1,0 +1,40 @@
+.switch-input {
+  display: none;
+}
+.switch-control {
+  transform: translate(0%, 0%);
+  display: inline-block;
+  width: 40px;
+  height: 16px;
+  background: #93e6ef;
+  border-radius: 3em;
+  -webkit-transition: background 0.25s ease-in-out;
+  transition: background 0.25s ease-in-out;
+  cursor: pointer;
+}
+.switch-control::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 100%;
+  background: #fbde0d;
+  border-radius: inherit;
+  box-shadow: 0 0 7px 1px #fbde0d;
+  -webkit-transition: background 0.25s ease-in-out, box-shadow 0.25s ease-in-out,
+    left 0.25s ease-in-out;
+  transition: background 0.25s ease-in-out, box-shadow 0.25s ease-in-out,
+    left 0.25s ease-in-out;
+}
+.switch-input:checked + .switch-control {
+  background: #3e5a98;
+}
+.switch-input:checked + .switch-control::before {
+  left: 24px;
+  background: #fafbb2;
+  box-shadow: 0 0 4px 1px #fafbb2;
+}
+.switch-input:checked ~ .container {
+  background: #333;
+}
